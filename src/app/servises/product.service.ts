@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Shelf } from '../interfaces/shelf';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RackService {
-  rack: Array<Shelf>
+  rack: Subject<Shelf[]>;
+  currentRack: Array<Shelf>;
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  feachRack(){
+  getPrimaryRack(){
 
   }
 
-  reliseRack(){
+  setCurrentRack(rack:Array<Shelf>){
+    this.currentRack = rack;
+  }
 
+  reliseRack(){
+    this.rack.next(this.currentRack);
   }
 
 }
