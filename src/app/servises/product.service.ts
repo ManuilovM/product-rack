@@ -9,7 +9,7 @@ import { secretKey } from './secretKey';
   providedIn: 'root'
 })
 export class RackService {
-  rack: Subject<Shelf[]>;
+  rack: Subject<Shelf[]> = new Subject<Shelf[]>();
   currentRack: Array<Shelf>;
   secretKey: string = secretKey;
 

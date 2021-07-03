@@ -1,2 +1,15 @@
 .rack-container{
 }
+
+.rack{
+    width: 300px;
+    display: flex;
+}
+
+.numbers{
+    width: 10px;
+}
+
+.number{
+    line-height: 65px;
+}
