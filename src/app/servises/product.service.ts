@@ -49,20 +49,23 @@ export class RackService {
 
   getProductFromElem(elem):Product{
      return {
-      productId: +elem.dataset.productId, 
-      productOrder: +elem.dataset.productId, 
+      productId: +elem.dataset.productid, 
+      productOrder: +elem.dataset.productorder, 
       productUrl: elem.getAttribute("src")
     }
   }
 
   removeProduct(product:Product, shelfOrder: number){
    let products: Array<Product> =this.currentRack.find((item)=>item.shelfOrder==shelfOrder).products;
-   if(products.length==1){
-      this.removeShelf(shelfOrder);
-      return
-    }
    let index :number= products.findIndex((item)=>item.productOrder==product.productOrder);
    products.splice(index, 1);
+   if(products.length==0)this.removeShelf(shelfOrder);
+   else {
+    products = products.map((item, i):Product=>{
+       if (i<index) return item 
+       else return {productId : item.productId, productUrl: item.productUrl, productOrder: item.productOrder--}
+     })
+   }
   }
 
   removeShelf(shelfOrder: number){

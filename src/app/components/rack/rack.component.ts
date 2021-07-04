@@ -32,11 +32,15 @@ export class RackComponent implements OnInit {
 
   onMousedown(event){
    let elem: HTMLElement= event.target;
+   let shelfOrder:number = +elem.parentElement.dataset.shelforder;
    this.productInHand  = this.rackService.getProductFromElem(elem);
    let shiftX = event.clientX - elem.getBoundingClientRect().left;
    let shiftY = event.clientY - elem.getBoundingClientRect().top;
-    // this.rackService.removeProduct(product)
-    // this.rackService.reliseRack();
+ console.log(JSON.stringify(this.productInHand));
+   this.rackService.removeProduct(this.productInHand, shelfOrder);
+   this.rackService.reliseRack();
+
+
 
   }
 
