@@ -8,8 +8,29 @@
 
 .numbers{
     width: 10px;
+    padding-right: 5px;
 }
 
 .number{
     line-height: 65px;
 }
+
+.shelfs{
+    min-width: 285px;
+    overflow: auto;
+}
+
+.shelf{
+    display: flex;
+    height: 62px;
+    border-bottom: blue 3px solid;
+    vertical-align: bottom;
+    align-items:flex-end
+}
+
+.product{
+    max-height: 55px;
+    width: auto;
+    padding-right: 5px;
+}
+
