@@ -2,14 +2,13 @@
     <h2 class="title title__rack-container">Стеллаж</h2>
     <div class="rack">
         <div class="numbers">
-            <div class="number">4</div>
-            <div class="number">3</div>
-            <div class="number">2</div>
-            <div class="number">1</div>
-            <div class="number">0</div>  
+            <div class="number" *ngFor="let i of [4,3,2,1,0]">{{i}}</div>
         </div>
+
         <div class="shelfs"> 
-           
+               <div class="shelf" *ngFor="let shelfOrder of [4,3,2,1,0]"> 
+                   <img class="product" *ngFor="let product of currentRack$ | async | productsOfShelf:shelfOrder" [src]="getProductUrl(product)">
+                </div>
         </div>
     </div>
 </div>

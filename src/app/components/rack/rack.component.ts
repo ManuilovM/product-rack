@@ -3,6 +3,7 @@ import { Shelf } from 'src/app/interfaces/shelf';
 import { RackService } from 'src/app/servises/product.service';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Product } from 'src/app/interfaces/product';
 
 @Component({
   selector: 'app-rack',
@@ -24,6 +25,11 @@ export class RackComponent implements OnInit {
         console.log(err);
       }
     })
+  }
+  
+  getProductUrl(product:Product):string{
+    if(!product) return null
+    return product.productUrl
   }
 
 }
