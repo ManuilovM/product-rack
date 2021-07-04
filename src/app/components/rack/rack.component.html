@@ -6,8 +6,8 @@
         </div>
 
         <div class="shelfs"> 
-               <div class="shelf" *ngFor="let shelfOrder of [4,3,2,1,0]"> 
-                   <img class="product" *ngFor="let product of currentRack$ | async | productsOfShelf:shelfOrder" [src]="getProductUrl(product)" [attr.data-productOrder]="getProductOrder(product)"  [attr.data-productId]="getProductId(product)">
+               <div class="shelf" *ngFor="let shelfOrder of [4,3,2,1,0]" [attr.data-shelfOrder]="shelfOrder"> 
+                   <img class="product" *ngFor="let product of currentRack$ | async | productsOfShelf:shelfOrder" [src]="rackService.getProductUrl(product)" [attr.data-productOrder]="rackService.getProductOrder(product)"  [attr.data-productId]="rackService.getProductId(product)" (mousedown) = "onMousedown.bind()">
                 </div>
         </div>
     </div>

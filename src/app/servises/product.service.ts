@@ -3,6 +3,7 @@ import { Observable, Observer, Subject } from 'rxjs';
 import { Shelf } from '../interfaces/shelf';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { secretKey } from './secretKey';
+import { Product } from '../interfaces/product';
 
 
 @Injectable({
@@ -30,5 +31,45 @@ export class RackService {
   reliseRack(){
     this.rack.next(this.currentRack);
   }
+
+  getProductUrl(product:Product):string{
+    if(!product) return null
+    return product.productUrl
+  }
+
+  getProductOrder(product:Product):string{
+    if(!product) return null
+    return ""+product.productOrder
+  }
+  
+  getProductId(product:Product):string{
+    if(!product) return null
+    return ""+product.productId
+  }
+
+  getProductFromElem(elem):Product{
+     return {
+      productId: +elem.dataset.productId, 
+      productOrder: +elem.dataset.productId, 
+      productUrl: elem.getAttribute("src")
+    }
+  }
+
+  removeProduct(product:Product, shelfOrder: number){
+   let products: Array<Product> =this.currentRack.find((item)=>item.shelfOrder==shelfOrder).products;
+   if(products.length==1){
+      this.removeShelf(shelfOrder);
+      return
+    }
+   let index :number= products.findIndex((item)=>item.productOrder==product.productOrder);
+   products.splice(index, 1);
+  }
+
+  removeShelf(shelfOrder: number){
+    let rack: Shelf[]= this.currentRack;
+    let index :number=  rack.findIndex((item)=>item.shelfOrder==shelfOrder);
+    rack.splice(index, 1)
+  }
+
 
 }

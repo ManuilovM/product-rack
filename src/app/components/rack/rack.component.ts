@@ -12,6 +12,7 @@ import { Product } from 'src/app/interfaces/product';
 })
 export class RackComponent implements OnInit {
   currentRack$: Subject<Shelf[]> = this.rackService.rack;
+  productInHand :Product;
 
   constructor(private rackService: RackService) { }
   
@@ -27,20 +28,18 @@ export class RackComponent implements OnInit {
     })
   }
   
-  getProductUrl(product:Product):string{
-    if(!product) return null
-    return product.productUrl
+
+
+  onMousedown(event){
+   let elem: HTMLElement= event.target;
+   this.productInHand  = this.rackService.getProductFromElem(elem);
+   let shiftX = event.clientX - elem.getBoundingClientRect().left;
+   let shiftY = event.clientY - elem.getBoundingClientRect().top;
+    // this.rackService.removeProduct(product)
+    // this.rackService.reliseRack();
+
   }
 
-  getProductOrder(product:Product):string{
-    if(!product) return null
-    return ""+product.productOrder
-  }
-  
-  getProductId(product:Product):string{
-    if(!product) return null
-    return ""+product.productId
-  }
 
 
 }

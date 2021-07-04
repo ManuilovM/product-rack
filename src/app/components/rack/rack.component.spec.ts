@@ -1,6 +1,25 @@
+import { HttpClientModule } from '@angular/common/http';
+import { Pipe, PipeTransform } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RackComponent } from './rack.component';
+
+@Pipe({name: 'productsOfShelf'})
+class MockProductsOfShelfPipe implements PipeTransform {
+    transform(value: number): number {
+        //Do stuff here, if you want
+        return value;
+    }
+}
+
+@Pipe({name: 'jsonPretty'})
+class MockJsonPrettyPipe implements PipeTransform {
+    transform(value: number): number {
+        //Do stuff here, if you want
+        return value;
+    }
+}
+
 
 describe('RackComponent', () => {
   let component: RackComponent;
@@ -8,7 +27,10 @@ describe('RackComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RackComponent ]
+      imports:[ HttpClientModule],
+      declarations: [ RackComponent,
+        MockProductsOfShelfPipe,
+        MockJsonPrettyPipe,]
     })
     .compileComponents();
   });
