@@ -6,13 +6,15 @@ import { RackComponent } from './components/rack/rack.component';
 import { RackStateComponent } from './components/rack-state/rack-state.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsOfShelfPipe } from './pipes/products-of-shelf.pipe';
+import { JsonPrettyPipe } from './pipes/json-pretty.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RackComponent,
     RackStateComponent,
-    ProductsOfShelfPipe
+    ProductsOfShelfPipe,
+    JsonPrettyPipe
   ],
   imports: [
     BrowserModule,

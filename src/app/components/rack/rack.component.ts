@@ -32,4 +32,15 @@ export class RackComponent implements OnInit {
     return product.productUrl
   }
 
+  getProductOrder(product:Product):string{
+    if(!product) return null
+    return ""+product.productOrder
+  }
+  
+  getProductId(product:Product):string{
+    if(!product) return null
+    return ""+product.productId
+  }
+
+
 }

@@ -1,2 +1,13 @@
-.rack-stat-container{
+.rack-state-container{
+    margin-left: 20px;
+    width: 300px;
+  height: 600px;
 }
+.rack-state{
+    height: inherit;
+    width: inherit;
+    white-space: pre;
+    overflow: auto;
+    background-color: #919d948f
+}
+

@@ -11,7 +11,11 @@ export class ProductsOfShelfPipe implements PipeTransform {
     if(!rank) return null 
     let shelf:Shelf = rank.find((item)=> item.shelfOrder == order)
     if(!shelf) return null
-    return shelf.products
+    return this.sortProducts(shelf.products)
+  }
+
+  sortProducts(array: Product[]):Product[]{
+     return array.sort((a,b)=>a.productOrder-b.productOrder)
   }
 
 }

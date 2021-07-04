@@ -1,4 +1,6 @@
 <div class="rack-state-container">
     <h2> Cостояние стелажа</h2>
-    <div class="rack-state"></div>
+    <div class="rack-state">
+        {{currentRack$|async|jsonPretty}}
+    </div>
 </div>
