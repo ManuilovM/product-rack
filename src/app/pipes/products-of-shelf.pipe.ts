@@ -3,7 +3,8 @@ import { Product } from '../interfaces/product';
 import { Shelf } from '../interfaces/shelf';
 
 @Pipe({
-  name: 'productsOfShelf'
+  name: 'productsOfShelf',
+  pure: false
 })
 export class ProductsOfShelfPipe implements PipeTransform {
 

@@ -7,7 +7,7 @@
 
         <div class="shelfs"> 
                <div class="shelf" *ngFor="let shelfOrder of [4,3,2,1,0]" [attr.data-shelfOrder]="shelfOrder"> 
-                   <img class="product" *ngFor="let product of currentRack$ | async | productsOfShelf:shelfOrder" [src]="rackService.getProductUrl(product)" [attr.data-productOrder]="rackService.getProductOrder(product)"  [attr.data-productId]="rackService.getProductId(product)" (mousedown) = "onMousedown($event)">
+                   <img class="product" *ngFor="let product of currentRack$ | async | productsOfShelf:shelfOrder " [src]="rackService.getProductUrl(product)" [attr.data-productOrder]="rackService.getProductOrder(product)"  [attr.data-productId]="rackService.getProductId(product)" (mousedown) = "onMousedown($event)">
                 </div>
         </div>
     </div>

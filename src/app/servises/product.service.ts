@@ -4,6 +4,7 @@ import { Shelf } from '../interfaces/shelf';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { secretKey } from './secretKey';
 import { Product } from '../interfaces/product';
+import { JsonPrettyPipe } from '../pipes/json-pretty.pipe';
 
 
 @Injectable({
@@ -66,6 +67,7 @@ export class RackService {
        else return {productId : item.productId, productUrl: item.productUrl, productOrder: item.productOrder--}
      })
    }
+   console.log(JSON.stringify(this.currentRack) );
   }
 
   removeShelf(shelfOrder: number){
@@ -75,7 +77,8 @@ export class RackService {
   }
 
   addProduct(product:Product, shelfOrder: number, productOrder:number){
-    let shelf: Shelf =this.currentRack.find((item)=>item.shelfOrder==shelfOrder)
+    
+    let shelf: Shelf =this.currentRack.find((item)=>item.shelfOrder==shelfOrder) 
     if (!shelf) {
       this.createShelf(shelfOrder, product);
       return
@@ -86,17 +89,20 @@ export class RackService {
       return
     }
     shelf.products = shelf.products.map((item,i)=>{
-      if (i<productOrder-1) return item 
-      else return {productId : item.productId, productUrl: item.productUrl, productOrder: item.productOrder++}
+      if (i<(productOrder-1)) return item 
+      else return {productId : item.productId, productUrl: item.productUrl, productOrder: item.productOrder+1}
     })
     product.productOrder=productOrder
     shelf.products.push(product);
     shelf.products.sort((a,b)=> a.productOrder-b.productOrder);
+
+    console.log(this.currentRack);
   }
 
   createShelf(shelfOrder:number, product:Product){
     let rack = this.currentRack;
-    let shelf: Shelf = {shelfId: rack.length+1, shelfOrder: shelfOrder, products: [product] }
+    product.productOrder = 1;
+    let shelf: Shelf = {shelfId: rack.length+1, shelfOrder: +shelfOrder, products: [product] }
     rack.push(shelf);
     rack.sort((a,b)=> a.shelfOrder-b.shelfOrder)
   }
