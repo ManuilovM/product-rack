@@ -76,7 +76,6 @@ export class RackComponent implements OnInit {
       elem.hidden = true;
       let elemBelow: Element = document.elementFromPoint(event.clientX, event.clientY);
       elem.hidden = false;
-      console.log (this.productInHand + shelfOrderFromDrag)
       this.rackService.removeProduct(this.productInHand, shelfOrderFromDrag);
       this.rackService.reliseRack();
 
@@ -86,7 +85,6 @@ export class RackComponent implements OnInit {
         ){
           let shelfOrder = +elemBelow.closest(".shelf").getAttribute("data-shelforder");
           let productOrder =+elemBelow.getAttribute("data-productOrder");
-          console.log("mouseup on .product:" + productOrder  + ", " + shelfOrder, JSON.stringify(this.productInHand));
           
           this.rackService.addProduct(this.productInHand, shelfOrder, productOrder);
           this.rackService.reliseRack();

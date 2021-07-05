@@ -67,7 +67,6 @@ export class RackService {
        else return {productId : item.productId, productUrl: item.productUrl, productOrder: item.productOrder--}
      })
    }
-   console.log(JSON.stringify(this.currentRack) );
   }
 
   removeShelf(shelfOrder: number){
@@ -96,7 +95,7 @@ export class RackService {
     shelf.products.push(product);
     shelf.products.sort((a,b)=> a.productOrder-b.productOrder);
 
-    console.log(this.currentRack);
+
   }
 
   createShelf(shelfOrder:number, product:Product){
