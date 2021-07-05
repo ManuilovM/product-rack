@@ -53,6 +53,17 @@ export class RackComponent implements OnInit {
 
    function onMouseMove(event) {
     moveAt(event.pageX, event.pageY);
+    Array.from(document.getElementsByClassName("product__shelf__hover")).forEach((item)=>{
+      item.classList.remove("product__shelf__hover");
+    })
+
+    elem.hidden = true;
+    let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    elem.hidden = false;
+
+    if(
+      Array.from(elemBelow.classList).some((item)=> item=="product")
+    ) elemBelow.classList.add("product__shelf__hover");
   }
 
    document.addEventListener('mousemove', onMouseMove);
