@@ -74,5 +74,31 @@ export class RackService {
     rack.splice(index, 1)
   }
 
+  addProduct(product:Product, shelfOrder: number, productOrder:number){
+    let shelf: Shelf =this.currentRack.find((item)=>item.shelfOrder==shelfOrder)
+    if (!shelf) {
+      this.createShelf(shelfOrder, product);
+      return
+    }
+    if(!productOrder){
+      product.productOrder= shelf.products.length+1;
+      shelf.products.push(product);
+      return
+    }
+    shelf.products = shelf.products.map((item,i)=>{
+      if (i<productOrder-1) return item 
+      else return {productId : item.productId, productUrl: item.productUrl, productOrder: item.productOrder++}
+    })
+    product.productOrder=productOrder
+    shelf.products.push(product);
+    shelf.products.sort((a,b)=> a.productOrder-b.productOrder);
+  }
+
+  createShelf(shelfOrder:number, product:Product){
+    let rack = this.currentRack;
+    let shelf: Shelf = {shelfId: rack.length+1, shelfOrder: shelfOrder, products: [product] }
+    rack.push(shelf);
+    rack.sort((a,b)=> a.shelfOrder-b.shelfOrder)
+  }
 
 }
